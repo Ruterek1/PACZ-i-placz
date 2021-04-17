@@ -1,8 +1,9 @@
-public class Firearm {
-    private int Magazine;
-    private double Range;
+public class Firearm implements Weapon {
+
+    private final int Magazine;
+    private final double Range;
     private int Ammo;
-    private double BulletDamage;
+    private final double BulletDamage;
 
     public Firearm(int magazine, double range, int ammo, double bulletDamage) {
         Magazine = magazine;
@@ -11,27 +12,24 @@ public class Firearm {
         BulletDamage = bulletDamage;
     }
 
-    public int getMagazine() {
-        return Magazine;
+    @Override
+    public double DealDamage() {
+        return 0;
     }
 
-    public void setMagazine(int magazine) {
-        Magazine = magazine;
+    public int getMagazine() {
+        return Magazine;
     }
 
     public double getRange() {
         return Range;
     }
 
-    public void setRange(double range) {
-        Range = range;
-    }
-
     public int getAmmo() {
         return Ammo;
     }
 
-    public void setAmmo(int ammo) {
+    public void addAmmo(int ammo) {
         Ammo = ammo;
     }
 
@@ -39,13 +37,4 @@ public class Firearm {
         return BulletDamage;
     }
 
-    public void setBulletDamage(double bulletDamage) {
-        BulletDamage = bulletDamage;
-    }
-
-    public float ShootOnce() {
-
-    }
-
-    public float ShootSeries
 }
