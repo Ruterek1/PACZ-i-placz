@@ -3,20 +3,20 @@ import java.util.ArrayList;
 
 public class Client {
 
-    private List<Weapon> Weapons;
-    private Dummy Dummy;
+    private List<Weapon> weapons;
+    private Dummy dummy;
 
-    public Client(List<Weapon> weapons, Dummy dummy) {
-        Weapons = weapons;
-        Dummy = dummy;
+    public Client(Dummy dummy) {
+        this.weapons = new ArrayList<Weapon>();
+        this.dummy = dummy;
     }
 
     public List<Weapon> getWeapons() {
-        return Weapons;
+        return weapons;
     }
 
     public Weapon getWeapon(int n) {
-        return Weapons.get(n);
+        return weapons.get(n);
     }
 
     public void useWeapon(Weapon weapon) {
@@ -27,7 +27,7 @@ public class Client {
     }
 
     public Dummy getDummy() {
-        return Dummy;
+        return dummy;
     }
 
     public void addWeapon(Weapon weapon) {

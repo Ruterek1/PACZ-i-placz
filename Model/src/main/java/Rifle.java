@@ -1,10 +1,10 @@
 public class Rifle extends Firearm {
 
-    private final double Scope;
+    private final double scope;
 
     public Rifle(int magazine, double range, int ammo, double bulletDamage, double scope) {
         super(magazine, range, ammo, bulletDamage);
-        Scope = scope;
+        this.scope = scope;
     }
     @Override
     public double dealDamage(Dummy dummy) {
@@ -21,7 +21,7 @@ public class Rifle extends Firearm {
         else return 0;
     }
     public double getScope() {
-        return Scope;
+        return scope;
     }
 
 }

@@ -1,10 +1,10 @@
 public class Shotgun extends Firearm {
 
-    private final int Barrels;
+    private final int barrels;
 
     public Shotgun(int magazine, double range, int ammo, double bulletDamage, int barrels) {
         super(magazine, range, ammo, bulletDamage);
-        Barrels = barrels;
+        this.barrels = barrels;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Shotgun extends Firearm {
     }
 
     public int getBarrels() {
-        return Barrels;
+        return barrels;
     }
 
 }

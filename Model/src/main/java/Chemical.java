@@ -1,11 +1,11 @@
 public class Chemical implements Weapon {
 
-    private double IgnitionRange;
-    private double ApplyRange;
+    private double ignitionRange;
+    private double applyRange;
 
     public Chemical(double ignitionRange, double applyRange) {
-        IgnitionRange = ignitionRange;
-        ApplyRange = applyRange;
+        this.ignitionRange = ignitionRange;
+        this.applyRange = applyRange;
     }
 
     @Override
@@ -14,11 +14,11 @@ public class Chemical implements Weapon {
     }
 
     public double getIgnitionRange() {
-        return IgnitionRange;
+        return ignitionRange;
     }
 
     public double getApplyRange() {
-        return ApplyRange;
+        return applyRange;
     }
 
 }

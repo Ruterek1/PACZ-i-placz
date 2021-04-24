@@ -1,12 +1,12 @@
-public class Poison extends Chemical {
+public class Incendiary extends Chemical {
 
     private final double expirationTime;
     private final double DPS;
 
-    public Poison(double ignitionRange, double applyRange, double expirationTime, double DPS) {
+    public Incendiary(double ignitionRange, double applyRange, double expirationTime, double dps) {
         super(ignitionRange, applyRange);
         this.expirationTime = expirationTime;
-        this.DPS = DPS;
+        this.DPS = dps;
     }
 
     @Override
@@ -15,7 +15,7 @@ public class Poison extends Chemical {
             return 0;
         }
         else {
-            return getDPS()*getExpirationTime();
+            return getDPS()*getExpirationTime()* ((dummy.getDistance()-getApplyRange())/getIgnitionRange());
         }
     }
 

@@ -1,15 +1,15 @@
 public class Firearm implements Weapon {
 
-    private final int Magazine;
-    private final double Range;
-    private int Ammo;
-    private final double BulletDamage;
+    private final int magazine;
+    private final double range;
+    private int ammo;
+    private final double bulletDamage;
 
     public Firearm(int magazine, double range, int ammo, double bulletDamage) {
-        Magazine = magazine;
-        Range = range;
-        Ammo = ammo;
-        BulletDamage = bulletDamage;
+        this.magazine = magazine;
+        this.range = range;
+        this.ammo = ammo;
+        this.bulletDamage = bulletDamage;
     }
 
     @Override
@@ -47,15 +47,15 @@ public class Firearm implements Weapon {
 
 
     public int getMagazine() {
-        return Magazine;
+        return magazine;
     }
 
     public double getRange() {
-        return Range;
+        return range;
     }
 
     public int getAmmo() {
-        return Ammo;
+        return ammo;
     }
 
     public void setAmmo(int ammo) {
@@ -63,11 +63,16 @@ public class Firearm implements Weapon {
     }
 
     public void addAmmo(int ammo) {
-        Ammo = ammo;
+        if(getAmmo()+ammo>getMagazine()) {
+            setAmmo(getMagazine());
+        }
+        else if (ammo>0) {
+            setAmmo(getAmmo()+ammo);
+        }
     }
 
     public double getBulletDamage() {
-        return BulletDamage;
+        return bulletDamage;
     }
 
 }

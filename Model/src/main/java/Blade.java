@@ -1,12 +1,12 @@
 public class Blade extends ColdWeapon {
 
-    private double Sharpness;
-    private double Efficiency;
+    private double sharpness;
+    private double efficiency;
 
     public Blade(double damage, double sharpness, double efficiency) {
         super(damage);
-        Sharpness = sharpness;
-        Efficiency = efficiency;
+        this.sharpness = sharpness;
+        this.efficiency = efficiency;
     }
 
     @Override
@@ -22,18 +22,13 @@ public class Blade extends ColdWeapon {
     }
 
     public double getSharpness() {
-        return Sharpness;
+        return sharpness;
     }
 
     public void setSharpness(double sharpness) {
-        Sharpness = sharpness;
+        this.sharpness = sharpness;
     }
 
     public double getEfficiency() {
-        return Efficiency;
-    }
-
-    public void setEfficiency(double efficiency) {
-        Efficiency = efficiency;
-    }
-}
+        return efficiency;
+    }}
