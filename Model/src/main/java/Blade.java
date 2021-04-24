@@ -9,6 +9,18 @@ public class Blade extends ColdWeapon {
         Efficiency = efficiency;
     }
 
+    @Override
+    public double dealDamage(Dummy dummy) {
+        if(dummy.getDistance()>0||getSharpness()==0) {
+            return 0;
+        }
+        if(getSharpness()>getEfficiency()) {
+            setSharpness(getSharpness()-getEfficiency());
+        }
+        else setSharpness(0);
+        return getDamage();
+    }
+
     public double getSharpness() {
         return Sharpness;
     }

@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class Client {
 
@@ -19,7 +20,10 @@ public class Client {
     }
 
     public void useWeapon(Weapon weapon) {
-
+        if(weapon.dealDamage(getDummy())>getDummy().getHp()) {
+            dummy.setHp(0);
+        }
+        else dummy.setHp(dummy.getHp()-weapon.dealDamage(getDummy()));
     }
 
     public Dummy getDummy() {
@@ -27,6 +31,6 @@ public class Client {
     }
 
     public void addWeapon(Weapon weapon) {
-
+        weapons.add(weapon);
     }
 }

@@ -9,6 +9,16 @@ public class Poison extends Chemical {
         this.DPS = DPS;
     }
 
+    @Override
+    public double dealDamage(Dummy dummy) {
+        if(dummy.getDistance()>getApplyRange()+getIgnitionRange()) {
+            return 0;
+        }
+        else {
+            return getDPS()*getExpirationTime();
+        }
+    }
+
     public double getExpirationTime() {
         return ExpirationTime;
     }

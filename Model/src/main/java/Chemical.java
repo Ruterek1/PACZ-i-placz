@@ -9,7 +9,7 @@ public class Chemical implements Weapon {
     }
 
     @Override
-    public double DealDamage() {
+    public double dealDamage(Dummy dummy) {
         return 0;
     }
 
