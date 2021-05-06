@@ -1,3 +1,5 @@
+package Backend;
+
 public class Explosive extends Chemical {
 
     private final double centralDamage;

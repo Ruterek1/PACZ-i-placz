@@ -1,3 +1,5 @@
+package Backend;
+
 public class Pole extends ColdWeapon {
 
     private double range;

@@ -1,3 +1,5 @@
+package Backend;
+
 public class Shotgun extends Firearm {
 
     private final int barrels;

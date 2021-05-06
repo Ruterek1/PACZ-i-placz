@@ -1,3 +1,5 @@
+package Backend;
+
 public class Neurobalistic extends ColdWeapon {
 
     private final double range;

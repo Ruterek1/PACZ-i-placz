@@ -1,3 +1,5 @@
+package Backend;
+
 public class Blunt extends ColdWeapon {
 
     public Blunt(double damage) {

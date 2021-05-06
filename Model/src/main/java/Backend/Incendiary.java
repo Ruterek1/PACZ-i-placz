@@ -1,3 +1,5 @@
+package Backend;
+
 public class Incendiary extends Chemical {
 
     private final double expirationTime;

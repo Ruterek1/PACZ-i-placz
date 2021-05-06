@@ -1,3 +1,5 @@
+package Backend;
+
 public class ColdWeapon implements Weapon {
 
     private double damage;

@@ -1,3 +1,5 @@
+package Backend;
+
 public class Blade extends ColdWeapon {
 
     private double sharpness;

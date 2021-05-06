@@ -1,3 +1,5 @@
+package Backend;
+
 public class Rifle extends Firearm {
 
     private final double scope;
@@ -20,6 +22,7 @@ public class Rifle extends Firearm {
         }
         else return 0;
     }
+
     public double getScope() {
         return scope;
     }

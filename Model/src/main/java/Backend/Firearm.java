@@ -1,3 +1,5 @@
+package Backend;
+
 public class Firearm implements Weapon {
 
     private final int magazine;
