@@ -28,7 +28,7 @@ public class Panel extends Application {
     private Pane testPlace = new Pane();
     private double n = 0;
     private Dummy2D dummy2D = new Dummy2D(30, 30, Color.RED);
-    private Client client = new Client(dummy2D.dummy);
+    private Client client = new Client(dummy2D.getDummy());
     private Client2D client2D = new Client2D(100, 300, 40, 40, Color.BLUE, client);
     private List<Weapon> weapons = new ArrayList<>();
     private List<Weapon2D> weapons2D = new ArrayList<>();
@@ -72,17 +72,17 @@ public class Panel extends Application {
                     testPlace.getChildren().removeIf(oldWeapon -> oldWeapon.equals(weapon2D.updateStats));
                     if (weapon2D.getWeapon().getClass().getSimpleName().equals(currentItemSelected)) {
                         client2D.setWeapon(weapon2D);
-                        testPlace.getChildren().add(client2D.weapon2D);
-                        testPlace.getChildren().add(client2D.weapon2D.updateStats);
+                        testPlace.getChildren().add(client2D.getWeapon2D());
+                        testPlace.getChildren().add(client2D.getWeapon2D().updateStats);
                     }
                 });
             }
         });
 
         testPlace.getChildren().add(client2D);
-        testPlace.getChildren().add(client2D.clientStats);
+        testPlace.getChildren().add(client2D.getClientStats());
         testPlace.getChildren().add(dummy2D);
-        testPlace.getChildren().add(dummy2D.dummyStats);
+        testPlace.getChildren().add(dummy2D.getDummyStats());
         root.setPrefSize(1200, 600);
         root.setCenter(testPlace);
         root.setBottom(listView);
@@ -98,13 +98,13 @@ public class Panel extends Application {
     }
 
     private void shoot(Client2D client2D) {
-        List<Weapon> weapons = client2D.client.getWeapons();
-        if (weapons != null && client2D.weapon2D != null) {
-            firearms(client2D.client).forEach(f -> {
-                if (f == client2D.weapon2D.getWeapon()) {
+        List<Weapon> weapons = client2D.getClient().getWeapons();
+        if (weapons != null && client2D.getWeapon2D() != null) {
+            firearms(client2D.getClient()).forEach(f -> {
+                if (f == client2D.getWeapon2D().getWeapon()) {
                     if (f.getAmmo() > 0) {
                         Bullet2D b = new Bullet2D((int) client2D.getTranslateX() + 20, (int) client2D.getTranslateY(),
-                                5, 20, Color.BLACK, f.dealDamage(dummy2D.dummy),
+                                5, 20, Color.BLACK, f.dealDamage(dummy2D.getDummy()),
                                 f instanceof Rifle ? f.getRange() * ((Rifle) f).getScope() : f.getRange());
                         testPlace.getChildren().add(b);
                         if (f.getAmmo() <= 0) {
@@ -121,44 +121,108 @@ public class Panel extends Application {
                     }
                 }
             });
-            chemicals(client2D.client).forEach(f -> {
-                if (f == client2D.weapon2D.getWeapon()) {
+            chemicals(client2D.getClient()).forEach(f -> {
+                if (f == client2D.getWeapon2D().getWeapon()) {
                     ThrowBall2D b = new ThrowBall2D((int) client2D.getTranslateX() + 35, (int) client2D.getTranslateY() + 35,
-                            5, Color.BLACK, f.dealDamage(dummy2D.dummy), f.getApplyRange());
+                            5, Color.BLACK, f.dealDamage(dummy2D.getDummy()), f.getApplyRange());
                     testPlace.getChildren().add(b);
                 }
             });
-            coldWeapons(client2D.client).forEach(f -> {
-                if (f == client2D.weapon2D.getWeapon()) {
+            coldWeapons(client2D.getClient()).forEach(f -> {
+                if (f == client2D.getWeapon2D().getWeapon()) {
                     if (f instanceof Neurobalistic) {
                         Bullet2D b = new Bullet2D((int) client2D.getTranslateX() + 20, (int) client2D.getTranslateY(),
-                                5, 20, Color.BLACK, f.dealDamage(dummy2D.dummy), ((Neurobalistic) f).getRange());
+                                5, 20, Color.BLACK, f.dealDamage(dummy2D.getDummy()), ((Neurobalistic) f).getRange());
                         testPlace.getChildren().add(b);
                     } else if (f instanceof Pole) {
                         Bullet2D b = new Bullet2D((int) client2D.getTranslateX() + 20, (int) client2D.getTranslateY(),
-                                5, 20, Color.BLACK, f.dealDamage(dummy2D.dummy), ((Pole) f).getRange());
+                                5, 20, Color.BLACK, f.dealDamage(dummy2D.getDummy()), ((Pole) f).getRange());
                         testPlace.getChildren().add(b);
                     } else {
-                        f.dummy.setHp(d.dummy.getHp() - b.getDealDamage());
-                        testPlace.getChildren().removeIf(b::equals);
-                        if (d.dummy.getHp() <= 0) {
-                            testPlace.getChildren().removeIf(n -> n.equals(d));
-                            testPlace.getChildren().removeIf(n -> n.equals(d.dummyStats));
-                            addDummy.setTranslateX(1000);
-                            addDummy.setTranslateY(200);
-                            addDummy.setOnAction(event -> {
-                                dummy2D = new Dummy2D(30, 30, Color.RED);
-                                testPlace.getChildren().add(dummy2D);
-                                testPlace.getChildren().add(dummy2D.dummyStats);
-                                testPlace.getChildren().remove(addDummy);
-                            });
-                            testPlace.getChildren().add(addDummy);
-                            }
-                        }
+                        dummies2D().forEach(d -> {
+                            d.getDummy().setHp(d.getDummy().getHp() - f.dealDamage(d.getDummy()));
+                            dummyProcedure(d);
+                        });
                     }
                 }
             });
         }
+    }
+
+    private void dummyProcedure(Dummy2D d) {
+        if (d.getDummy().getHp() <= 0) {
+            testPlace.getChildren().removeIf(n -> n.equals(d));
+            testPlace.getChildren().removeIf(n -> n.equals(d.getDummyStats()));
+            addDummy.setTranslateX(1000);
+            addDummy.setTranslateY(200);
+            addDummy.setOnAction(event -> {
+                dummy2D = new Dummy2D(30, 30, Color.RED);
+                testPlace.getChildren().add(dummy2D);
+                testPlace.getChildren().add(dummy2D.getDummyStats());
+                testPlace.getChildren().remove(addDummy);
+            });
+            testPlace.getChildren().add(addDummy);
+        }
+    }
+
+    private void update() {
+        bullets2D().forEach(b -> {
+            if (b.getRange() > 0) {
+                b.moveRight();
+                dummies2D().forEach(d -> {
+                    if (b.getBoundsInParent().intersects(d.getBoundsInParent())) {
+                        d.getDummy().setHp(d.getDummy().getHp() - b.getDealDamage());
+                        testPlace.getChildren().removeIf(b::equals);
+                        dummyProcedure(d);
+                    }
+                });
+                if (b.getRange() <= 0) {
+                    testPlace.getChildren().removeIf(n -> n.equals(b));
+                }
+            }
+        });
+        throwBall2D().forEach(b -> {
+            if (b.getRange() > 0) {
+                b.moveRight();
+                dummies2D().forEach(d -> {
+                    if (b.getRange() <= 0) {
+                        d.getDummy().setHp(d.getDummy().getHp() - b.getDealDamage());
+                        testPlace.getChildren().removeIf(b::equals);
+                        dummyProcedure(d);
+                    }
+                });
+                if (b.getRange() <= 0) {
+                    testPlace.getChildren().removeIf(n -> n.equals(b));
+                }
+            }
+        });
+        if (!dummies2D().isEmpty()) {
+            dummy2D.updateStats();
+        }
+        if (client2D != null) {
+            client2D.updateStats();
+            if (client2D.getWeapon2D() != null) {
+                client2D.getWeapon2D().updateStats();
+            }
+        }
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Scene scene = new Scene(createContent());
+        scene.setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case A -> dummy2D.moveLeft();
+                case D -> dummy2D.moveRight();
+                case X -> shoot(client2D);
+            }
+        });
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     private List<Bullet2D> bullets2D() {
@@ -189,89 +253,5 @@ public class Panel extends Application {
     private List<ColdWeapon> coldWeapons(Client client) {
         return client.getWeapons().stream().filter(sc -> sc instanceof ColdWeapon)
                 .map(n -> (ColdWeapon) n).collect(Collectors.toList());
-    }
-
-    private void update() {
-        bullets2D().forEach(b -> {
-            if (b.getRange() > 0) {
-                b.moveRight();
-                dummies2D().forEach(d -> {
-                    if (b.getBoundsInParent().intersects(d.getBoundsInParent())) {
-                        d.dummy.setHp(d.dummy.getHp() - b.getDealDamage());
-                        testPlace.getChildren().removeIf(b::equals);
-                        if (d.dummy.getHp() <= 0) {
-                            testPlace.getChildren().removeIf(n -> n.equals(d));
-                            testPlace.getChildren().removeIf(n -> n.equals(d.dummyStats));
-                            addDummy.setTranslateX(1000);
-                            addDummy.setTranslateY(200);
-                            addDummy.setOnAction(event -> {
-                                dummy2D = new Dummy2D(30, 30, Color.RED);
-                                testPlace.getChildren().add(dummy2D);
-                                testPlace.getChildren().add(dummy2D.dummyStats);
-                                testPlace.getChildren().remove(addDummy);
-                            });
-                            testPlace.getChildren().add(addDummy);
-                        }
-                    }
-                });
-                if (b.getRange() <= 0) {
-                    testPlace.getChildren().removeIf(n -> n.equals(b));
-                }
-            }
-        });
-        throwBall2D().forEach(b -> {
-            if (b.getRange() > 0) {
-                b.moveRight();
-                dummies2D().forEach(d -> {
-                    if (b.getRange() <= 0) {
-                        d.dummy.setHp(d.dummy.getHp() - b.getDealDamage());
-                        testPlace.getChildren().removeIf(b::equals);
-                        if (d.dummy.getHp() <= 0) {
-                            testPlace.getChildren().removeIf(n -> n.equals(d));
-                            testPlace.getChildren().removeIf(n -> n.equals(d.dummyStats));
-                            addDummy.setTranslateX(1000);
-                            addDummy.setTranslateY(200);
-                            addDummy.setOnAction(event -> {
-                                dummy2D = new Dummy2D(30, 30, Color.RED);
-                                testPlace.getChildren().add(dummy2D);
-                                testPlace.getChildren().add(dummy2D.dummyStats);
-                                testPlace.getChildren().remove(addDummy);
-                            });
-                            testPlace.getChildren().add(addDummy);
-                        }
-                    }
-                });
-                if (b.getRange() <= 0) {
-                    testPlace.getChildren().removeIf(n -> n.equals(b));
-                }
-            }
-        });
-        if (!dummies2D().isEmpty()) {
-            dummy2D.updateStats();
-        }
-        if (client2D != null) {
-            client2D.updateStats();
-            if (client2D.weapon2D != null) {
-                client2D.weapon2D.updateStats();
-            }
-        }
-    }
-
-    @Override
-    public void start(Stage stage) {
-        Scene scene = new Scene(createContent());
-        scene.setOnKeyPressed(e -> {
-            switch (e.getCode()) {
-                case A -> dummy2D.moveLeft();
-                case D -> dummy2D.moveRight();
-                case X -> shoot(client2D);
-            }
-        });
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

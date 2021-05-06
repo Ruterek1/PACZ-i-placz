@@ -10,7 +10,7 @@ public class ColdWeapon implements Weapon {
 
     @Override
     public double dealDamage(Dummy dummy) {
-        if(dummy.getDistance()>0) {
+        if(dummy.getDistance()>20) {
             return 0;
         }
         return getDamage();

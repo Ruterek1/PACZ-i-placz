@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 
 public class Objects {
 
-    public abstract static class Weapon2D extends SVGPath {
+    public abstract static class Weapon2D extends SVGPath{
 
         private final Weapon weapon;
         protected Text updateStats;
@@ -265,9 +265,9 @@ public class Objects {
 
     public static class Client2D extends Rectangle {
 
-        Client client;
-        Weapon2D weapon2D;
-        Text clientStats;
+        private Client client;
+        private Weapon2D weapon2D;
+        private Text clientStats;
 
         Client2D(int x, int y, int w, int h, Color color, Client client) {
             super(w, h, color);
@@ -278,6 +278,18 @@ public class Objects {
             updateStats();
             setTranslateX(x);
             setTranslateY(y);
+        }
+
+        public Client getClient() {
+            return client;
+        }
+
+        public Weapon2D getWeapon2D() {
+            return weapon2D;
+        }
+
+        public Text getClientStats() {
+            return clientStats;
         }
 
         void setWeapon(Weapon2D w) {
@@ -292,8 +304,8 @@ public class Objects {
 
     public static class Dummy2D extends Rectangle {
 
-        Dummy dummy;
-        Text dummyStats;
+        private Dummy dummy;
+        private Text dummyStats;
 
         Dummy2D(int w, int h, Color color) {
             super(w, h, color);
@@ -304,6 +316,14 @@ public class Objects {
             updateStats();
             this.setTranslateX(1000);
             this.setTranslateY(300);
+        }
+
+        public Dummy getDummy() {
+            return dummy;
+        }
+
+        public Text getDummyStats() {
+            return dummyStats;
         }
 
         void moveLeft() {
