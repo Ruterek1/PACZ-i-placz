@@ -83,7 +83,7 @@ public class Panel extends Application {
         testPlace.getChildren().add(client2D.getClientStats());
         testPlace.getChildren().add(dummy2D);
         testPlace.getChildren().add(dummy2D.getDummyStats());
-        root.setPrefSize(1200, 600);
+        root.setPrefSize(1920, 1000);
         root.setCenter(testPlace);
         root.setBottom(listView);
 
