@@ -14,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -27,7 +28,7 @@ public class Panel extends Application {
     private BorderPane root = new BorderPane();
     private Pane testPlace = new Pane();
     private double n = 0;
-    private Dummy2D dummy2D = new Dummy2D(30, 30, Color.RED);
+    private Dummy2D dummy2D = new Dummy2D(30, 40, Color.RED);
     private Client client = new Client(dummy2D.getDummy());
     private Client2D client2D = new Client2D(100, 300, 40, 40, Color.BLUE, client);
     private List<Weapon> weapons = new ArrayList<>();
@@ -140,7 +141,9 @@ public class Panel extends Application {
                         testPlace.getChildren().add(b);
                     } else {
                         dummies2D().forEach(d -> {
-                            if (client2D.intersects(d.getBoundsInLocal())) {
+                            if (client2D.getBoundsInParent().intersects(d.getBoundsInParent())) {
+                                System.out.println(client2D.getBoundsInParent().getMaxX());
+                                System.out.println(d.getBoundsInParent().getMinX());
                                 d.getDummy().setHp(d.getDummy().getHp() - f.dealDamage(d.getDummy()));
                                 dummyProcedure(d);
                             }
@@ -158,7 +161,7 @@ public class Panel extends Application {
             addDummy.setTranslateX(1000);
             addDummy.setTranslateY(200);
             addDummy.setOnAction(event -> {
-                dummy2D = new Dummy2D(30, 30, Color.RED);
+                dummy2D = new Dummy2D(30, 40, Color.RED);
                 testPlace.getChildren().add(dummy2D);
                 testPlace.getChildren().add(dummy2D.getDummyStats());
                 testPlace.getChildren().remove(addDummy);

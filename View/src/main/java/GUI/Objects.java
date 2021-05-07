@@ -331,7 +331,7 @@ public class Objects {
 
         Dummy2D(int w, int h, Color color) {
             super(w, h, color);
-            this.dummy = new Dummy(900, 100);
+            this.dummy = new Dummy(860, 100);
             this.dummyStats = new Text();
             this.dummyStats.setTranslateX(1000);
             this.dummyStats.setTranslateY(200);
@@ -349,7 +349,7 @@ public class Objects {
         }
 
         void moveLeft() {
-            if (dummy.getDistance() > 40) {
+            if (dummy.getDistance() > 0) {
                 setTranslateX(getTranslateX() - 10);
                 dummy.setDistance(dummy.getDistance() - 10);
                 dummyStats.setTranslateX(dummyStats.getTranslateX() - 10);
