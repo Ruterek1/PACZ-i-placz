@@ -83,7 +83,7 @@ public class Panel extends Application {
         testPlace.getChildren().add(client2D.getClientStats());
         testPlace.getChildren().add(dummy2D);
         testPlace.getChildren().add(dummy2D.getDummyStats());
-        root.setPrefSize(1920, 1000);
+        root.setPrefSize(1200, 600);
         root.setCenter(testPlace);
         root.setBottom(listView);
 
@@ -140,8 +140,10 @@ public class Panel extends Application {
                         testPlace.getChildren().add(b);
                     } else {
                         dummies2D().forEach(d -> {
-                            d.getDummy().setHp(d.getDummy().getHp() - f.dealDamage(d.getDummy()));
-                            dummyProcedure(d);
+                            if (client2D.intersects(d.getBoundsInLocal())) {
+                                d.getDummy().setHp(d.getDummy().getHp() - f.dealDamage(d.getDummy()));
+                                dummyProcedure(d);
+                            }
                         });
                     }
                 }

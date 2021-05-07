@@ -349,10 +349,11 @@ public class Objects {
         }
 
         void moveLeft() {
-            setTranslateX(getTranslateX() - 10);
-            dummy.setDistance(dummy.getDistance() - 10);
-            dummyStats.setTranslateX(dummyStats.getTranslateX() - 10);
-
+            if (dummy.getDistance() > 40) {
+                setTranslateX(getTranslateX() - 10);
+                dummy.setDistance(dummy.getDistance() - 10);
+                dummyStats.setTranslateX(dummyStats.getTranslateX() - 10);
+            }
         }
 
         void moveRight() {

@@ -13,7 +13,7 @@ public class Blade extends ColdWeapon {
 
     @Override
     public double dealDamage(Dummy dummy) {
-        if(dummy.getDistance()>0||getSharpness()==0) {
+        if(dummy.getDistance()>40||getSharpness()==0) {
             return 0;
         }
         if(getSharpness()>getEfficiency()) {
