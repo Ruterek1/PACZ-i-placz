@@ -1,12 +1,11 @@
-package GUI;
+package Frontend;
 import Backend.*;
-import GUI.Objects.*;
+import Frontend.Objects.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,8 +13,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -27,7 +24,6 @@ public class Panel extends Application {
 
     private BorderPane root = new BorderPane();
     private Pane testPlace = new Pane();
-    private double n = 0;
     private Dummy2D dummy2D = new Dummy2D(30, 40, Color.RED);
     private Client client = new Client(dummy2D.getDummy());
     private Client2D client2D = new Client2D(100, 300, 40, 40, Color.BLUE, client);
@@ -84,7 +80,7 @@ public class Panel extends Application {
         testPlace.getChildren().add(client2D.getClientStats());
         testPlace.getChildren().add(dummy2D);
         testPlace.getChildren().add(dummy2D.getDummyStats());
-        root.setPrefSize(1200, 600);
+        root.setPrefSize(1920, 1000);
         root.setCenter(testPlace);
         root.setBottom(listView);
 

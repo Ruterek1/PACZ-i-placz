@@ -1,4 +1,4 @@
-package GUI;
+package Frontend;
 
 import Backend.*;
 import javafx.scene.paint.Color;
@@ -87,6 +87,11 @@ public class Objects {
         public Neurobalistic2D(Neurobalistic neurobalistic) {
             super(neurobalistic);
             this.neurobalistic = neurobalistic;
+            setScaleX(0.008);
+            setScaleY(-0.008);
+            setTranslateX(-4970);
+            setTranslateY(-6100);
+            setContent("M4320 12792 c0 -6 6 -12 13 -15 13 -4 -105 -181 -2486 -3732 l-1415 -2110 -181 -3 c-99 -1 -181 -4 -181 -7 0 -2 38 -64 84 -137 l83 -133 -111 -5 -110 -5 69 -45 c56 -37 65 -46 47 -48 -21 -3 -22 -8 -22 -83 0 -77 1 -79 24 -79 17 0 31 -11 46 -34 l21 -35 -99 -153 -99 -153 204 -5 205 -5 1330 -2020 c731 -1111 1610 -2446 1953 -2968 l624 -947 -41 -28 c-48 -31 -30 -44 23 -16 31 15 33 15 46 -2 7 -9 16 -15 19 -11 4 4 1 13 -5 21 -10 12 3 22 76 62 148 80 428 250 608 369 975 644 1870 1474 2522 2340 288 383 585 869 758 1241 l57 121 211 6 c225 7 351 20 373 38 24 20 16 57 -40 189 -103 243 -125 349 -133 630 -6 225 4 360 48 605 33 180 81 332 124 395 19 27 60 57 146 106 123 69 231 157 269 219 19 31 60 49 60 27 0 -17 -72 -100 -135 -156 -82 -72 -257 -205 -319 -241 -56 -33 -59 -41 -8 -19 20 8 296 122 612 251 316 130 579 239 584 244 5 4 -1 13 -15 18 -46 20 -1204 493 -1219 498 -28 9 55 -58 205 -165 141 -100 316 -255 303 -267 -5 -6 -400 12 -475 21 l-43 5 0 142 c-1 554 -103 1171 -285 1722 -86 261 -168 460 -294 720 -436 894 -1089 1690 -1991 2426 -547 446 -1312 921 -1857 1153 -142 60 -183 73 -183 58z m203 -129 c800 -477 1397 -930 1981 -1503 752 -739 1305 -1550 1656 -2430 254 -637 409 -1412 410 -2047 l0 -133 -3226 0 -3226 0 -268 190 -268 190 -565 2 -566 3 1952 2912 c1074 1602 1953 2913 1955 2913 2 0 76 -43 165 -97z m-4283 -6282 c0 -3 -7 -14 -14 -24 -13 -17 -15 -17 -30 5 -22 31 -20 35 14 30 17 -2 30 -7 30 -11z m7777 -39 c13 -26 57 -87 98 -137 42 -49 90 -118 107 -153 29 -59 31 -66 24 -145 -13 -158 -51 -301 -196 -742 -147 -445 -201 -661 -216 -856 l-7 -97 65 -11 c36 -6 80 -11 99 -11 19 0 44 -3 55 -6 22 -6 22 -6 -8 -72 -317 -702 -762 -1375 -1352 -2042 -159 -179 -532 -557 -731 -739 -457 -419 -883 -753 -1445 -1133 -137 -93 -177 -116 -186 -106 -8 9 -3677 5580 -3879 5892 l-19 29 569 -6 570 -7 285 195 285 195 2930 -1 2930 0 22 -47z");
         }
 
         public Neurobalistic getNeurobalistic() {
@@ -107,6 +112,11 @@ public class Objects {
         public Pole2D(Pole pole) {
             super(pole);
             this.pole = pole;
+            setScaleX(0.3);
+            setScaleY(0.3);
+            setTranslateX(-110);
+            setTranslateY(-120);
+            setContent("m131.81 577.89 30.391-40.606c55.253-73.826 103.89-150.84 151.84-229.6 5.9892-9.8378 16.688-30.255 16.688-30.255l-198.92 300.47z");
         }
 
         public Pole getPole() {
@@ -287,9 +297,9 @@ public class Objects {
 
     public static class Client2D extends Rectangle {
 
-        private Client client;
+        private final Client client;
         private Weapon2D weapon2D;
-        private Text clientStats;
+        private final Text clientStats;
 
         Client2D(int x, int y, int w, int h, Color color, Client client) {
             super(w, h, color);
@@ -326,8 +336,8 @@ public class Objects {
 
     public static class Dummy2D extends Rectangle {
 
-        private Dummy dummy;
-        private Text dummyStats;
+        private final Dummy dummy;
+        private final Text dummyStats;
 
         Dummy2D(int w, int h, Color color) {
             super(w, h, color);
