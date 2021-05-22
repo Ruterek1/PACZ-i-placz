@@ -35,9 +35,9 @@ public class Panel extends Application {
 
 
     private void makeLists() {
-        weapons2D.add(new Handgun2D(new Handgun(2, 200, 20, 8)));
-        weapons2D.add(new Shotgun2D(new Shotgun(2, 100, 7, 20, 1)));
-        weapons2D.add(new Rifle2D(new Rifle(2, 400 , 10, 12, 3)));
+        weapons2D.add(new Handgun2D(new Handgun(20, 400, 20, 8)));
+        weapons2D.add(new Shotgun2D(new Shotgun(7, 300, 7, 20, 1)));
+        weapons2D.add(new Rifle2D(new Rifle(10, 400 , 10, 12, 3)));
         weapons2D.add(new Explosive2D(new Explosive(20, 200, 80)));
         weapons2D.add(new Incendiary2D(new Incendiary(100, 200, 5, 15)));
         weapons2D.add(new Poison2D(new Poison(100, 400, 5, 10)));
@@ -80,7 +80,7 @@ public class Panel extends Application {
         testPlace.getChildren().add(client2D.getClientStats());
         testPlace.getChildren().add(dummy2D);
         testPlace.getChildren().add(dummy2D.getDummyStats());
-        root.setPrefSize(1920, 1000);
+        root.setPrefSize(1200, 600);
         root.setCenter(testPlace);
         root.setBottom(listView);
 
